@@ -1,0 +1,80 @@
+{
+  "properties": {
+    "connectionParameters": {
+      "pdshost": {
+        "type": "string",
+        "uiDefinition": {
+          "displayName": "PDS Host, default: bsky.social",
+          "description": "The Bluesky host. Default: bsky.social",
+          "tooltip": "Provide the Bluesky host. Default: bsky.social",
+          "default": "bsky.social",
+          "constraints": {
+            "tabIndex": 2,
+            "clearText": true,
+            "required": "false"
+          }
+        }
+      },
+      "blueskyid": {
+        "type": "string",
+        "uiDefinition": {
+          "displayName": "Bluesky Handle",
+          "description": "The Bluesky Handle for this API.",
+          "tooltip": "Provide the Bluesky Handle.",
+          "constraints": {
+            "tabIndex": 3,
+            "clearText": true,
+            "required": "true"
+          }
+        }
+      },
+      "blueskypassword": {
+        "type": "securestring",
+        "uiDefinition": {
+          "displayName": "Bluesky Password",
+          "description": "The Bluesky Password for this API.",
+          "tooltip": "Provide the Bluesky Password.",
+          "constraints": {
+            "tabIndex": 4,
+            "clearText": false,
+            "required": "true"
+          }
+        }
+      }
+    },
+    "iconBrandColor": "#da3b01",
+    "scriptOperations": [],
+    "capabilities": [],
+    "policyTemplateInstances": [
+      {
+        "templateId": "setqueryparameter",
+        "title": "Set query handle",
+        "parameters": {
+          "x-ms-apimTemplateParameter.name": "blueskyid",
+          "x-ms-apimTemplateParameter.value": "@connectionParameters('blueskyid')",
+          "x-ms-apimTemplateParameter.existsAction": "override"
+        }
+      },
+      {
+        "templateId": "setqueryparameter",
+        "title": "Set query password",
+        "parameters": {
+          "x-ms-apimTemplateParameter.name": "blueskypassword",
+          "x-ms-apimTemplateParameter.value": "@connectionParameters('blueskypassword')",
+          "x-ms-apimTemplateParameter.existsAction": "override"
+        }
+      },
+      {
+        "templateId": "setqueryparameter",
+        "title": "Set query pdshost",
+        "parameters": {
+          "x-ms-apimTemplateParameter.name": "pdshost",
+          "x-ms-apimTemplateParameter.value": "@connectionParameters('pdshost')",
+          "x-ms-apimTemplateParameter.existsAction": "override"
+        }
+      }
+    ],
+    "publisher": "Troy Taylor",
+    "stackOwner": "Bluesky, PBC."
+  }
+}
